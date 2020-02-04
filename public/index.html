@@ -40,10 +40,11 @@
     -->
 </body>
 <script>
-  window.addEventListener("touchstart", function (event) {
+  const box = document.querySelector(".box")
+  box.addEventListener("touchstart", function (event) {
     event.preventDefault();
   }, {
-    passive: true
+    passive: false
   });
 
 </script>
