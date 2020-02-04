@@ -7,11 +7,10 @@ function App() {
   const [pageX, setPageX] = React.useState();
   const [pageY, setPageY] = React.useState();
 
-  const touchHandler = e => {
-    // console.log("touche touch ", e.touches[0].pageX);
+  const touchHandler = React.useCallback(e => {
     setPageX(e.touches[0].pageX);
     setPageY(e.touches[0].pageY);
-  };
+  }, []);
   return (
     <div className="App" onTouchMove={touchHandler}>
       <main>

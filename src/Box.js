@@ -3,36 +3,27 @@ import React from "react";
 const Box = props => {
   const [click, setClick] = React.useState(false);
   const currentBox = React.useRef(null);
-  const mouseHandler = () => {
+
+  const mouseHandler = React.useCallback(() => {
     setClick(!click);
-  };
+    console.log(props.pagePosition);
+    const { offsetTop, offsetLeft } = currentBox.current;
+    console.log("offset", [offsetLeft, offsetTop]);
+  }, [click]);
 
-  const TouchHandler = e => {
-    mouseHandler();
-    // let match = props.pagePosition[0] === e.nativeEvent.touches[0].clientX;
-    // match ? setClick(true) : setClick(true);
-    // console.log(match);
-    // console.log(
-    //   "clientX:",
-    //   e.nativeEvent.touches[0].clientX,
-    //   "clientY:",
-    //   e.nativeEvent.touches[0].clientY,
-    // );
-  };
-
-  console.log(props.pagePosition);
+  const TouchHandler = e => {};
 
   return (
     <div
       ref={currentBox}
       key={props.id}
-      onMouseOver={mouseHandler}
-      //   onTouchMove={TouchHandler}
+      onClick={mouseHandler}
+      onTouchMove={mouseHandler}
     >
       {click ? (
-        <div className="box" ontouchstart></div>
+        <div className="box"></div>
       ) : (
-        <div className="box box-off" ontouchstart></div>
+        <div className="box box-off"></div>
       )}
     </div>
   );
