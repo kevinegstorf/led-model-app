@@ -11,12 +11,13 @@ function App() {
     setPageX(e.touches[0].pageX);
     setPageY(e.touches[0].pageY);
   }, []);
+
   return (
     <div className="App" onTouchMove={touchHandler}>
       <main>
         <div className="grid">
           {boxArray.map(box => {
-            return <Box key={box} id={box} pagePosition={[pageX, pageY]} />;
+            return <Box key={box} id={box} screenPosition={[pageX, pageY]} />;
           })}
         </div>
       </main>
