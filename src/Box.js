@@ -30,9 +30,9 @@ const Box = props => {
       //   onTouchMove={TouchHandler}
     >
       {click ? (
-        <div className="box"></div>
+        <div className="box" ontouchstart></div>
       ) : (
-        <div className="box box-off"></div>
+        <div className="box box-off" ontouchstart></div>
       )}
     </div>
   );
