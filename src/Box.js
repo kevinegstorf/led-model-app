@@ -7,7 +7,7 @@ const Box = ({ id }) => {
   };
 
   return (
-    <div key={id} onMouseEnter={clickHandler} onTouchStart={clickHandler}>
+    <div key={id} onMouseEnter={clickHandler} onTouchMove={clickHandler}>
       {click ? (
         <div className="box"></div>
       ) : (
