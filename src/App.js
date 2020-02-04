@@ -1,27 +1,23 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import Box from "./Box";
 import "./App.css";
 
-function useLockBodyScroll() {
-  useLayoutEffect(() => {
-    // Get original body overflow
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    // Prevent scrolling on mount
-    document.body.style.overflow = "hidden";
-    // Re-enable scrolling when component unmounts
-    return () => (document.body.style.overflow = originalStyle);
-  }, []); // Empty array ensures effect is only run on mount and unmount
-}
-
 function App() {
-  useLockBodyScroll();
   const boxArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  const [pageX, setPageX] = React.useState();
+  const [pageY, setPageY] = React.useState();
+
+  const touchHandler = e => {
+    // console.log("touche touch ", e.touches[0].pageX);
+    setPageX(e.touches[0].pageX);
+    setPageY(e.touches[0].pageY);
+  };
   return (
-    <div className="App">
+    <div className="App" onTouchMove={touchHandler}>
       <main>
         <div className="grid">
           {boxArray.map(box => {
-            return <Box key={box} id={box} />;
+            return <Box key={box} id={box} pagePosition={[pageX, pageY]} />;
           })}
         </div>
       </main>
