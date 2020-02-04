@@ -10,7 +10,9 @@ code {
 }
 
 html, body {
-  overflow: auto;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   overscroll-behavior: contain;
-  height: 300px;
+  overscroll-behavior-y: contain;
 }
